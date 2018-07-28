@@ -114,7 +114,7 @@ class NoteShrinker(object):
 
     def __init__(self, images, global_palette=True, sample_fraction=5,
                  num_colors=8, saturate=True, white_bg=True,
-                 value_threshold=0.15, sat_threshold=0.2, ds_ratio=1):
+                 value_threshold=0.15, sat_threshold=0.2, ds_ratio=0.5):
 
         if not isinstance(images, list):
             images = [images]
