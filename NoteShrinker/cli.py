@@ -5,7 +5,7 @@ import os
 import re
 from argparse import ArgumentParser
 
-from . import NoteShrink
+from . import NoteShrinker
 
 # TODO: dpi
 # TODO: logging/debug/print
@@ -16,7 +16,7 @@ def main():
     
     unshrunk = get_filenames(options)
     
-    ns = NoteShrink(unshrunk, options.global_palette, options.sample_fraction, 
+    ns = NoteShrinker(unshrunk, options.global_palette, options.sample_fraction, 
                     options.num_colors, options.saturate, options.white_bg, 
                     options.value_threshold, options.sat_threshold)
     

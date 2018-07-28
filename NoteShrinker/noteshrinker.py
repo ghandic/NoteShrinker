@@ -102,7 +102,7 @@ class Note(object):
         self.shrunk = self.shrunk.convert('RGB')
     
 
-class NoteShrink(object):
+class NoteShrinker(object):
     
     
     def __init__(self, images, global_palette=True, sample_fraction=5, 
