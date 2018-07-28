@@ -17,3 +17,6 @@ build/
 
 # Notebook checkpoints
 .ipynb_checkpoints
+
+# Pytest
+.pytest_cache/

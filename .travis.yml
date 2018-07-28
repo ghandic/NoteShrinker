@@ -1,0 +1,19 @@
+language: python
+python:
+- '3.5'
+- '3.6'
+install:
+- pip install -q -r requirements.txt
+- pip install .
+notifications:
+  email: true
+script: pytest || exit 0
+deploy:
+  provider: pypi
+  user: ghandic
+  password:
+    secure: 2RqwLwMIqvjapoozF9TSpY28tnP/P5QBat0dhiItSxMftzt2iNovzPYnYN6P54ZTVZdfuekHx5US3Q9Q5hxe33RBIg7vdiTRjfOieAuTnIEggZLDAU0J4Jh+LUGfXfejDVVNDerFQLyxw4P236owTibpUIDSddCku8OfFWVENVSPTELyl1kEECEDrzh2vxUxVBe1h8Z89BmTF7jUiilVhmMLatL+hbC/eU3wY1008WnZY+jjHbOhDrTVkadgffPcP/ejjgAL4Oo326VCLzt6TtfCoG4ypJqncQWbGvFA4hNSim1jj5buSGAPugTFgZWdy4rksDuOzPFiMQgzIajfFXi7BUvuga6pzGrU37UGYYajdbd8ZWUliKgj6sRWf3vHv5+gI3Hxld3ZcR0Rz2BhMxiPGucOl5O1YXC3fFXS9Tx9MNb4qLeyuYiXd5vcytGsykzFpPiVtgwA9SJ1/Z/2PWvnDeni8yUbmQheACfl9wj4tRUTBPKk/KbWhXsMHXM3Xn4xmMLLN8qVE9SpQoivpbEHLXd7lc1OLdczu5hQuAdtPt+qopiNYnu+Giux1oViPiWzG8Mr2GHzavaHDBUpYo4JLFUjaneyhD+upCZgDhUgpmQCk60upCXyCHv2zKv6XQWEHBidguqvYLL00qE7L9nj96SxsUCY9t+1KCp2sZg=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: ghandic/NoteShrinker
