@@ -11,17 +11,18 @@ from . import NoteShrinker
 # TODO: logging/debug/print
 
 def main():
-    
+
     options = get_argument_parser().parse_args()
-    
+
     unshrunk = get_filenames(options)
-    
-    ns = NoteShrinker(unshrunk, options.global_palette, options.sample_fraction, 
-                    options.num_colors, options.saturate, options.white_bg, 
-                    options.value_threshold, options.sat_threshold)
-    
+
+    ns = NoteShrinker(unshrunk, options.global_palette, options.sample_fraction,
+                    options.num_colors, options.saturate, options.white_bg,
+                    options.value_threshold, options.sat_threshold,
+                    options.downsample_ratio)
+
     shrunk = ns.shrink()
-    
+
     for i, shrunk_image in enumerate(shrunk):
         output_filename = '{}{:04d}.png'.format(options.basename, i)
         shrunk_image.save(output_filename)
@@ -76,7 +77,7 @@ def get_argument_parser():
                         help='output PNG filename base' + show_default)
 
     parser.add_argument('-v', dest='value_threshold', metavar='PERCENT',
-                        type=percent, default='25',
+                        type=percent, default='15',
                         help='background value threshold %%'+show_default)
 
     parser.add_argument('-s', dest='sat_threshold', metavar='PERCENT',
@@ -94,7 +95,7 @@ def get_argument_parser():
                         help='%% of pixels to sample' + show_default)
 
     parser.add_argument('-w', dest='white_bg', action='store_true',
-                        default=False, help='make background white')
+                         default=True, help='make background white')
 
     parser.add_argument('-g', dest='global_palette',
                         action='store_true', default=False,
@@ -102,13 +103,16 @@ def get_argument_parser():
 
     parser.add_argument('-S', dest='saturate', action='store_false',
                         default=True, help='do not saturate colors')
-    
+
     parser.add_argument('-K', dest='sort_numerically',
                         action='store_false', default=True,
                         help='keep filenames ordered as specified; '
                         'use if you *really* want IMG_10.png to '
                         'precede IMG_2.png')
 
+    parser.add_argument('-d', dest='downsample_ratio',
+                        metavar='PERCENT',
+                        type=percent, default='50',
+                        help='%% to resize the image before applying NoteShrink' + show_default)
+
     return parser
-    
-    
