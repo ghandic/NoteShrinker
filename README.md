@@ -3,6 +3,7 @@ NoteShrinker
 
 ![GitHub stars](https://img.shields.io/github/stars/ghandic/NoteShrinker.svg?style=social&label=Stars)
 ![Docker build](https://img.shields.io/docker/automated/challisa/noteshrinker.svg)
+![Travis build](https://travis-ci.org/ghandic/NoteShrinker.svg?branch=master)
 ![Package version](https://img.shields.io/pypi/v/NoteShrinker.svg)
 ![License](https://img.shields.io/github/license/ghandic/NoteShrinker.svg)
 
