@@ -18,7 +18,7 @@ if sys.argv[-1] == "publish":
 
 
 setup(name='NoteShrinker',
-      version='0.1.2',
+      version='0.2.0',
       description='Smart shrinking of the size and color palette of images',
       long_description=readme(),
       classifiers=[
