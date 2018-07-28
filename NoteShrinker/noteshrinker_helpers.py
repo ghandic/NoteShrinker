@@ -1,4 +1,15 @@
 import numpy as np
+from PIL import Image
+
+
+def downsampled_image(img, ds_ratio):
+    '''Reduced the size of the image to be used in the NoteShrink'''
+    new_w = max(int(img.shape[0]*ds_ratio), 100)
+    new_h = max(int(img.shape[1]*ds_ratio), 100)
+
+    downsampled_image = Image.fromarray(img).resize((new_w,new_h))
+    return np.array(downsampled_image)
+
 
 def quantize(image, bits_per_channel):
     '''Reduces the number of bits per channel in the given image.'''
@@ -57,7 +68,7 @@ def pack_rgb(rgb):
     else:
         return packed.reshape(orig_shape)
 
-    
+
 def rgb_to_sv(rgb):
     '''Convert an RGB image or array of RGB colors to saturation and
     value, returning each one as a separate 32-bit floating point array or
@@ -97,9 +108,9 @@ def get_bg_color(image, bits_per_channel=6):
 
 
 def get_fg_mask(bg_color, samples, value_threshold, sat_threshold):
-    '''Determine whether each pixel in a set of samples is foreground by 
-    comparing it to the background color. A pixel is classified as a 
-    foreground pixel if either its value or saturation differs from the 
+    '''Determine whether each pixel in a set of samples is foreground by
+    comparing it to the background color. A pixel is classified as a
+    foreground pixel if either its value or saturation differs from the
     background by a threshold.'''
 
     s_bg, v_bg = rgb_to_sv(bg_color)
@@ -108,5 +119,5 @@ def get_fg_mask(bg_color, samples, value_threshold, sat_threshold):
     s_diff = np.abs(s_bg - s_samples)
     v_diff = np.abs(v_bg - v_samples)
 
-    return ((v_diff >= value_threshold) | 
+    return ((v_diff >= value_threshold) |
             (s_diff >= sat_threshold))
