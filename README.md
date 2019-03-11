@@ -71,8 +71,7 @@ ns = NoteShrinker(['test.png'], **args)
 # Shrink the images by calling the shrink method, this returns an array of PIL images encoded as RGB
 shrunk = ns.shrink()
 
-# Carry on with your image processing....
+# Carry on with your image processing...
 for img in shrunk:
    img.save('example.png')
 ```
-
